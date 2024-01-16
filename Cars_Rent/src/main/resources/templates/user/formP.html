@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rental Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+<form id="msform">
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li >Mission details</li>
+    <li>Vehicule details</li>
+    <li class="active" >Payment details</li>
+  </ul>
+  <!-- fieldsets -->
+
+
+  <fieldset>
+
+
+
+    <h2 class="fs-title">PAYMENT INFORMATION</h2>
+    <h3 class="fs-subtitle"></h3>
+
+
+
+
+
+
+
+
+
+
+    <br>
+
+
+      <div type="text" name="RentTerm" placeholder="RentTerm" >
+        <div class="col-sm">
+          <select name="cars" id="form-select" class="form-control">
+            <option value="select your option">Select your RentTerm</option>
+            <option data-price="350"  data-carpet="410" value="1 bed 1 bath" id="1">2-Days</option>
+            <option data-price="350" data-carpet="410" value="2 bed 1 bath" id="2">3-Days</option>
+            <option data-price="350" data-carpet="500" value="3 bed 1 bath" id="3">Week</option>
+            <option data-price="400" data-carpet="500" value="3 bed 2 bath" id="4">2-Weeks</option>
+            <option data-price="450" data-carpet="600" value="4 bed 2 bath" id="5">3-Weeks</option>
+            <option data-price="500" data-carpet="645" value="5 bed 2 bath" id="6">4-Weeks</option>
+          </select>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="clean"  id="nocarpet" value="nocarpet"   checked>
+          <label class=" form-check-label" for="nocarpet" style="color: white"  >
+            With Maintenance
+          </label>
+        </div>
+        <div class="form-check"     >
+          <input  class="form-check-input" type="radio"  name="clean"  id="yescarpet" value="yescarpet"  >
+          <label class=" form-check-label"  for="yescarpet"     style="color: white"     >
+            No Maintenance
+          </label>
+        </div>
+
+
+
+      <div  class="form-control "  aria-label="default input">
+          <span class="product-price" itemprop="price" id="markup" style="color: black"></span>
+        </div>
+      </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+      const price = $('.product-price');
+      const mySelect= $('#form-select');
+      const carpetControl = $('input[name="clean"]');
+
+      function updatePrice() {
+        const withCarpet = $('input[name="clean"]:checked').val() === 'yescarpet';
+        const selectedOpt = mySelect.find(":selected");
+        if (withCarpet) {
+          price.text(selectedOpt.data('price'));
+        } else {
+          price.text(selectedOpt.data('carpet'));
+        }
+      }
+
+      [mySelect, carpetControl].forEach((el) => {
+        el.on('change', updatePrice);
+      });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+
+
+
+
+    <div type="text" name="PaymentMethod" placeholder="PaymentMethod" >
+      <select id="inpuStateT" class="form-control">
+        <option selected>PaymentMethod</option>
+        <option>Visa</option>
+        <option></option>
+      </select>
+    </div>
+
+
+    <br>
+
+
+    <input type="text" name="Card Number" placeholder="Card Number " />
+
+
+    <input type="text" name="Name on Card" placeholder="Name on Card " />
+
+
+    <input type="text" name="Expires" placeholder="Expires " />
+
+    <input type="text" name="CCV" placeholder="CCV " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a th:href =  "@{/forma1}"
+       class = "btn btn-info">Previous</a>
+
+
+    <a th:href =  "@{/user/login}"
+       class = "btn btn-info">Submit</a>
+
+
+</form>
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="jquery.easing.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+
+
+
+<style>
+
+  body, html {
+    height: 100%;
+    background-image: url('https://etimg.etb2bimg.com/photo/88228444.cms');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+
+
+  }
+
+
+
+
+
+  /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
+  * {margin: 0; padding: 0;}
+  html {
+  }
+  body {
+    font-size: 13px;
+    font-family: Arial, Tahoma, Verdena;
+  }
+  #msform {
+    max-width:800px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+  }
+  #msform fieldset {
+    background: rgba(115, 128, 126, 0.37);
+    border: 0 none;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+  }
+  #msform fieldset:not(:first-of-type) {
+    display: none;
+  }
+  #msform input, #msform textarea {
+    font-size: 13px;
+    font-family: Arial, Tahoma, Verdena;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+  }
+  #msform .action-button {
+    width: 100px;
+    background: rgba(10, 178, 229, 0.62);
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+  }
+  #msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(10, 178, 229, 0.62);
+  }
+  .fs-title {
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .fs-subtitle {
+    font-weight: normal;
+    color: white;
+    margin-bottom: 20px;
+  }
+  #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    counter-reset: step;
+  }
+  #progressbar li {
+    list-style-type: none;
+    color:white;
+    width:33.33%;
+    float: left;
+    position: relative;
+  }
+  #progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    display: block;
+    color: #333;
+    background:#ccc;
+    border-radius:50%;
+    margin: 0 auto 5px auto;
+    width:28px;
+    height:28px;
+    line-height:28px;
+  }
+  #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background:#ccc;
+    position: absolute;
+    left: -50%;
+    top:14px;
+    z-index: -1;
+  }
+  #progressbar li:first-child:after {
+    content: none;
+  }
+  #progressbar li.active:before,  #progressbar li.active:after{
+    background: rgb(12, 238, 211);
+    color: white;
+    /*font-family:FontAwesome;
+    content: "\f00c";*/
+  }
+
+
+
+
+
+
+
+</style>
+
+
+<script>
+
+  //jQuery time
+  var current_fs, next_fs, previous_fs; //fieldsets
+  var left, opacity, scale; //fieldset properties which we will animate
+  var animating; //flag to prevent quick multi-click glitches
+
+  $(".next").click(function(){
+    if(animating) return false;
+    animating = true;
+
+    current_fs = $(this).parent();
+    next_fs = $(this).parent().next();
+
+    //activate next step on progressbar using the index of next_fs
+    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+    //show the next fieldset
+    next_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate({opacity: 0}, {
+      step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale current_fs down to 80%
+        scale = 1 - (1 - now) * 0.2;
+        //2. bring next_fs from the right(50%)
+        left = (now * 50)+"%";
+        //3. increase opacity of next_fs to 1 as it moves in
+        opacity = 1 - now;
+        current_fs.css({
+          'transform': 'scale('+scale+')',
+          'position': 'absolute'
+        });
+        next_fs.css({'left': left, 'opacity': opacity});
+      },
+      duration: 800,
+      complete: function(){
+        current_fs.hide();
+        animating = false;
+      },
+      //this comes from the custom easing plugin
+      easing: 'easeInOutBack'
+    });
+  });
+
+  $(".previous").click(function(){
+    if(animating) return false;
+    animating = true;
+
+    current_fs = $(this).parent();
+    previous_fs = $(this).parent().prev();
+
+    //de-activate current step on progressbar
+    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+    //show the previous fieldset
+    previous_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate({opacity: 0}, {
+      step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale previous_fs from 80% to 100%
+        scale = 0.8 + (1 - now) * 0.2;
+        //2. take current_fs to the right(50%) - from 0%
+        left = ((1-now) * 50)+"%";
+        //3. increase opacity of previous_fs to 1 as it moves in
+        opacity = 1 - now;
+        current_fs.css({'left': left});
+        previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+      },
+      duration: 800,
+      complete: function(){
+        current_fs.hide();
+        animating = false;
+      },
+      //this comes from the custom easing plugin
+      easing: 'easeInOutBack'
+    });
+  });
+
+  $(".submit").click(function(){
+    return false;
+  })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
+
+
+
+
+
+
+
